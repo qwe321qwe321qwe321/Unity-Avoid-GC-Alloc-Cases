@@ -17,6 +17,11 @@ public class Testbed : MonoBehaviour {
         Test3();
         Test4();
         Test5();
+        Test6();
+        Test7();
+        Test8();
+        Test9();
+        Test10();
         TestUniTask();
         Debug.Break(); // pause game.
     }
@@ -76,6 +81,41 @@ public class Testbed : MonoBehaviour {
         };
         Profiler.BeginSample("Test5");
         case5.Process();
+        Profiler.EndSample();
+    }
+
+    private void Test6() {
+        Case6 case6 = new Case6();
+        Profiler.BeginSample("Test6");
+        case6.Process();
+        Profiler.EndSample();
+    }
+
+    private void Test7() {
+        Case7 case7 = new Case7();
+        Profiler.BeginSample("Test7");
+        case7.Process();
+        Profiler.EndSample();
+    }
+
+    private void Test8() {
+        Case8 case8 = new Case8();
+        Profiler.BeginSample("Test8");
+        case8.Process();
+        Profiler.EndSample();
+    }
+
+    private void Test9() {
+        Case9 case9 = new Case9();
+        Profiler.BeginSample("Test9");
+        case9.Process();
+        Profiler.EndSample();
+    }
+
+    private void Test10() {
+        Case10 case10 = new Case10();
+        Profiler.BeginSample("Test10");
+        case10.Process();
         Profiler.EndSample();
     }
 }

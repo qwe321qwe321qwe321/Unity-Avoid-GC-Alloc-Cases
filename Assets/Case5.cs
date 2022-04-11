@@ -8,9 +8,6 @@ using UnityEngine.Profiling;
 /// </summary>
 public class Case5 : ICase {
     public MonoBehaviour coroutineProxy;
-    private WaitForEndOfFrame waitForEndOfFrame = new WaitForEndOfFrame();
-    private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
-
     public void Process() {
         IEnumerator delayWaitForSeconds = DelayWaitForSeconds(1f);
         Profiler.BeginSample("DelayWaitForSeconds");
