@@ -6,12 +6,22 @@ using UnityEngine.Profiling;
 public class Testbed : MonoBehaviour {
     public bool startProcess = true;
 
+    private void Start() {
+        TestAll(); // warm up for Mono.JIT
+    }
+
     public void Update() {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
             startProcess = true;
         }
         if (!startProcess) { return; }
             startProcess = false;
+
+        TestAll();
+        Debug.Break(); // pause game.
+    }
+
+    private void TestAll() {
         Test1();
         Test2();
         Test3();
@@ -22,8 +32,9 @@ public class Testbed : MonoBehaviour {
         Test8();
         Test9();
         Test10();
+        Test11();
         TestUniTask();
-        Debug.Break(); // pause game.
+        TestUnityAPI();
     }
 
     private void Test1() {
@@ -62,16 +73,6 @@ public class Testbed : MonoBehaviour {
         };
         Profiler.BeginSample("Test4");
         case4.Process();
-        Profiler.EndSample();
-    }
-
-    private void TestUniTask() {
-        CaseUniTask caseUniTask = new CaseUniTask(){
-            coroutineProxy = this
-        };
-
-        Profiler.BeginSample("TestUniTask");
-        caseUniTask.Process();
         Profiler.EndSample();
     }
 
@@ -117,6 +118,37 @@ public class Testbed : MonoBehaviour {
         Profiler.BeginSample("Test10");
         case10.Process();
         Profiler.EndSample();
+    }
+
+    private void Test11() {
+        Case11 case11 = new Case11();
+        Profiler.BeginSample("Test11");
+        case11.Process();
+        Profiler.EndSample();
+    }
+
+
+    private void TestUniTask() {
+        CaseUniTask caseUniTask = new CaseUniTask(){
+            coroutineProxy = this
+        };
+
+        Profiler.BeginSample("TestUniTask");
+        caseUniTask.Process();
+        Profiler.EndSample();
+    }
+
+
+    private void TestUnityAPI() {
+        CaseUnityAPIs caseUnityAPI = new CaseUnityAPIs(){
+            sampleObject = this.gameObject,
+            sampleRenderer = this.gameObject.AddComponent<MeshRenderer>(),
+        };
+
+        Profiler.BeginSample("TestUnityAPI");
+        caseUnityAPI.Process();
+        Profiler.EndSample();
+        Destroy(caseUnityAPI.sampleRenderer);
     }
 }
 

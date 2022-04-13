@@ -9,22 +9,22 @@ using UnityEngine.Profiling;
 public class Case5 : ICase {
     public MonoBehaviour coroutineProxy;
     public void Process() {
-        IEnumerator delayWaitForSeconds = DelayWaitForSeconds(1f);
+        IEnumerator delayWaitForSeconds = DelayWaitForSeconds(0);
         Profiler.BeginSample("DelayWaitForSeconds");
         RunCompletely(delayWaitForSeconds);
         Profiler.EndSample();
 
-        IEnumerator delayWaitForSecondsFix = DelayWaitForSecondsFix(1f);
+        IEnumerator delayWaitForSecondsFix = DelayWaitForSecondsFix(0);
         Profiler.BeginSample("DelayWaitForSecondsFix");
         RunCompletely(delayWaitForSecondsFix);
         Profiler.EndSample();
 
-        IEnumerator delayWaitForSecondsRealtime = DelayWaitForSecondsRealtime(1f);
+        IEnumerator delayWaitForSecondsRealtime = DelayWaitForSecondsRealtime(0);
         Profiler.BeginSample("DelayWaitForSecondsRealtime");
         RunCompletely(delayWaitForSecondsRealtime);
         Profiler.EndSample();
 
-        IEnumerator delayWaitForSecondsRealtimeFix = DelayWaitForSecondsRealtimeFix(1f);
+        IEnumerator delayWaitForSecondsRealtimeFix = DelayWaitForSecondsRealtimeFix(0);
         Profiler.BeginSample("DelayWaitForSecondsRealtimeFix");
         RunCompletely(delayWaitForSecondsRealtimeFix);
         Profiler.EndSample();
