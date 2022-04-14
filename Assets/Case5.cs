@@ -59,10 +59,8 @@ public class Case5 : ICase {
     }
 
     private IEnumerator DelayWaitForSecondsFix(float seconds) {
-        float time = 0;
-        while (time < seconds) {
+        for (float time = 0; time < seconds; time += Time.deltaTime) {
             yield return null; // free.
-            time += Time.deltaTime;
         }
     }
 
@@ -71,10 +69,8 @@ public class Case5 : ICase {
     }
 
     private IEnumerator DelayWaitForSecondsRealtimeFix(float seconds) {
-        float time = 0;
-        while (time < seconds) {
+        for (float time = 0; time < seconds; time += Time.unscaledDeltaTime) {
             yield return null; // free.
-            time += Time.unscaledTime;
         }
     }
 
