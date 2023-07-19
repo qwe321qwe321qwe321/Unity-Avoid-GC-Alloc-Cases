@@ -1,6 +1,6 @@
 # Unity/C#.Net 常用的Memory Allocation優化整理
 
-此repo是用來基於 [Unity/C#.Net 常用的Memory Allocation優化整理](https://qwe321qwe321qwe321.github.io/2022/04/14/Unity-CSharp-DotNet-%E5%B8%B8%E7%94%A8%E7%9A%84Memory%20Allocation%E5%84%AA%E5%8C%96%E6%95%B4%E7%90%86/) 這篇文的內容進行驗證。
+此repo是用來基於 [Unity/C#.Net 常用的Memory Allocation優化整理](https://qwe321qwe321qwe321.github.io/posts/64434/) 這篇文的內容進行驗證。
 
 Unity2020.3.31f1 / Win10
 
