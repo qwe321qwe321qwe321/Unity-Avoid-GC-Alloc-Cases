@@ -9,21 +9,23 @@ using UnityEngine.Profiling;
 public class Case6 : ICase {
     private System.Action m_ActionDoSomething;
     public void Process() {
-        Profiler.BeginSample("delegate implicit operator");
+        Profiler.BeginSample("Delegate with Captured Variables");
+        
+        Profiler.BeginSample("6.a delegate implicit operator");
         ActionParameter(DoSomething);
         Profiler.EndSample();
-        Profiler.BeginSample("delegate explicit operator");
+        Profiler.BeginSample("6.b delegate explicit operator");
         ActionParameter((System.Action)DoSomething);
         Profiler.EndSample();
 
-        Profiler.BeginSample("Lambda Experssion");
+        Profiler.BeginSample("6.c lambda expression");
         ActionParameter(
             () => {
                 DoSomething();
             });
         Profiler.EndSample();
 
-        Profiler.BeginSample("delegate operator");
+        Profiler.BeginSample("6.d delegate operator");
         ActionParameter(delegate { DoSomething(); });
         Profiler.EndSample();
 
@@ -33,18 +35,28 @@ public class Case6 : ICase {
         Profiler.BeginSample("Cached Action (Fix)");
         ActionParameter(m_ActionDoSomething);
         Profiler.EndSample();
+        
+        Profiler.EndSample();
+        
+        Profiler.BeginSample("Delegate without Captured Variables");
+        Profiler.BeginSample("6.e delegate implicit operator");
+        ActionParameter(DoSomethingStatic);
+        Profiler.EndSample();
+        Profiler.BeginSample("6.f delegate explicit operator");
+        ActionParameter((System.Action)DoSomethingStatic);
+        Profiler.EndSample();
 
-        //Profiler.BeginSample("Capture Variable");
-        //CapturedVariable();
-        //Profiler.EndSample();
+        Profiler.BeginSample("6.g lambda expression");
+        ActionParameter(
+            () => {
+                DoSomethingStatic();
+            });
+        Profiler.EndSample();
 
-        //Profiler.BeginSample("Capture Variable Pitfall");
-        //CapturedVariablePitfall(false);
-        //Profiler.EndSample();
-
-        //Profiler.BeginSample("Capture Variable Pitfall (Fix)");
-        //CapturedVariablePitfallFix(false);
-        //Profiler.EndSample();
+        Profiler.BeginSample("6.h delegate operator");
+        ActionParameter(delegate { DoSomethingStatic(); });
+        Profiler.EndSample();
+        Profiler.EndSample();
     }
 
     private void ActionParameter(System.Action action) {
@@ -52,6 +64,10 @@ public class Case6 : ICase {
     }
 
     private void DoSomething() {
+        // do something.
+    }
+    
+    private static void DoSomethingStatic() {
         // do something.
     }
 
